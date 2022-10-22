@@ -1,0 +1,11 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { SITE } from '~/config.mjs';
+import Imprint from '~/components/widgets/Imprint.astro';
+
+const title = `Imprint / Impressum — ${SITE.name}`;
+---
+
+<Layout meta={{ title }}>
+	<Imprint />
+</Layout>

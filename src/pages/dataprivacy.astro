@@ -1,0 +1,11 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { SITE } from '~/config.mjs';
+import DataPrivacy from '~/components/widgets/DataPrivacy.astro';
+
+const title = `Data Privacy Statement / Datenschutzerklärung — ${SITE.name}`;
+---
+
+<Layout meta={{ title }}>
+	<DataPrivacy />
+</Layout>

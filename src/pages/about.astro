@@ -1,0 +1,11 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { SITE } from '~/config.mjs';
+import About from '~/components/widgets/About.astro';
+
+const title = `About — ${SITE.name}`;
+---
+
+<Layout meta={{ title }}>
+	<About />
+</Layout>

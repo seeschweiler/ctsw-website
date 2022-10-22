@@ -35,6 +35,10 @@
 		attachEvent('[data-aw-toggle-color-scheme]', 'click', function () {
 			document.documentElement.classList.toggle('dark');
 			localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+
+			// Display logo depending on color mode
+			document.getElementById('ctsw_logo')?.classList.toggle('hidden');
+			document.getElementById('ctsw_logo_darkMode')?.classList.toggle('hidden');
 		});
 	};
 	window.onpageshow = function () {
@@ -44,5 +48,13 @@
 		}
 		document.body.classList.remove('overflow-hidden');
 		document.getElementById('menu')?.classList.add('hidden');
+
+		if (document.documentElement.classList.contains('dark')) {
+			document.getElementById('ctsw_logo')?.classList.add('hidden');
+			document.getElementById('ctsw_logo_darkMode')?.classList.remove('hidden');
+		} else {
+			document.getElementById('ctsw_logo')?.classList.remove('hidden');
+			document.getElementById('ctsw_logo_darkMode')?.classList.add('hidden');
+		}
 	};
 </script>

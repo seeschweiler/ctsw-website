@@ -14,7 +14,7 @@ const image = await findImage(post.image);
 <article class="max-w-md mx-auto md:max-w-none grid md:grid-cols-2 gap-6 md:gap-8">
 	<a class="relative block group" href={getPermalink(post.slug, 'post')}>
 		<div
-			class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-80 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg"
+			class="relative w-full pb-[56.25%] lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg"
 		>
 			<Picture
 				src={image}
@@ -43,7 +43,7 @@ const image = await findImage(post.image);
 		<footer class="mt-4">
 			<div>
 				<span class="text-gray-500 dark:text-slate-400">
-					<time datetime={post.pubDate}>{getFormattedDate(post.pubDate)}</time> ~
+					<time datetime={post.publishDate}>{getFormattedDate(post.publishDate)}</time> ~
 					{Math.ceil(post.readingTime)} min read
 				</span>
 			</div>

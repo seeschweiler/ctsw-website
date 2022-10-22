@@ -26,15 +26,21 @@ const meta = {
 	title: `Blog ${currentPage > 1 ? `— Page ${currentPage} ` : ''}— ${SITE.name}`,
 	description: SITE.description,
 	canonical: getCanonical(getPermalink(page.url.current)),
-	ogType: "blog",
-	noindex: currentPage > 1
+	ogType: 'blog',
+	noindex: currentPage > 1,
 };
+
+if (page.url.current === '/2') {
+	page.url.prev = '/';
+}
 ---
 
 <Layout {meta}>
 	<Fragment slot="title">
-		News and step-by-step guides about
-		<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">AstroWind</span>
+		Tutorials and step-by-step guides from
+		<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500"
+			>CodingTheSmartWay</span
+		>
 	</Fragment>
 	<BlogList posts={page.data} />
 	<Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
