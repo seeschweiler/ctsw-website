@@ -28,9 +28,9 @@ const meta = {
 	title: `${post.title} — ${SITE.name}`,
 	description: post.description,
 	canonical: post.canonical || getCanonical(getPermalink(post.slug, 'post')),
-	image: await findImage(post.image),
+	image: await findImage(post.image, post.slug),
 	ogTitle: post.title,
-	ogType: "article"
+	ogType: 'article',
 };
 ---
 

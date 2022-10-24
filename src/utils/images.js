@@ -1,7 +1,7 @@
 const load = async function () {
 	let images = [];
 	try {
-		images = import.meta.glob('~/assets/images/**');
+		images = import.meta.glob(['~/assets/images/**', '/data/blog/**/**/**']);
 	} catch (e) {
 		// continue regardless of error
 	}
@@ -17,7 +17,7 @@ export const fetchLocalImages = async () => {
 };
 
 /** */
-export const findImage = async (imagePath) => {
+export const findImage = async (imagePath, slug) => {
 	if (typeof imagePath !== 'string') {
 		return null;
 	}
@@ -26,12 +26,12 @@ export const findImage = async (imagePath) => {
 		return imagePath;
 	}
 
-	if (!imagePath.startsWith('~/assets')) {
+	if (!(imagePath.startsWith('~/assets') || imagePath.startsWith('./'))) {
 		return null;
 	} // For now only consume images using ~/assets alias (or absolute)
 
 	const images = await fetchLocalImages();
-	const key = imagePath.replace('~/', '/src/');
+	const key = imagePath.replace('~/', '/src/').replace('./', `/data/blog/${slug}/`);
 
 	return typeof images[key] === 'function' ? (await images[key]())['default'] : null;
 };

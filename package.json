@@ -43,6 +43,8 @@
     "node": "^14.15.0 || >=16.0.0"
   },
   "dependencies": {
-    "astro-m2dx": "^0.6.0"
+    "astro-m2dx": "^0.6.0",
+    "remark-frontmatter": "^4.0.1",
+    "remark-mdx-frontmatter": "^2.0.3"
   }
 }
