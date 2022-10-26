@@ -11,6 +11,11 @@ export const SITE = {
 	googleSiteVerificationId: 'orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M',
 };
 
+export const SWITCHES = {
+	youtubeLinks: true,
+	affiliateLinks: true,
+}
+
 export const BLOG = {
 	disabled: false,
 	postsPerPage: 5,
