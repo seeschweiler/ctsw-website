@@ -4,8 +4,13 @@ import { SITE } from '~/config.mjs';
 import Imprint from '~/components/widgets/Imprint.astro';
 
 const title = `Imprint / Impressum — ${SITE.name}`;
+
+const meta = {
+	title: title,
+	noindex: true,
+};
 ---
 
-<Layout meta={{ title }}>
+<Layout meta={meta}>
 	<Imprint />
 </Layout>

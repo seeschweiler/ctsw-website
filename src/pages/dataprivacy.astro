@@ -4,8 +4,13 @@ import { SITE } from '~/config.mjs';
 import DataPrivacy from '~/components/widgets/DataPrivacy.astro';
 
 const title = `Data Privacy Statement / Datenschutzerklärung — ${SITE.name}`;
+
+const meta = {
+	title: title,
+	noindex: true,
+};
 ---
 
-<Layout meta={{ title }}>
+<Layout meta={meta}>
 	<DataPrivacy />
 </Layout>

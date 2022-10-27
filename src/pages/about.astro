@@ -4,8 +4,13 @@ import { SITE } from '~/config.mjs';
 import About from '~/components/widgets/About.astro';
 
 const title = `About — ${SITE.name}`;
+
+const meta = {
+	title: title,
+	noindex: true,
+};
 ---
 
-<Layout meta={{ title }}>
+<Layout meta={meta}>
 	<About />
 </Layout>

@@ -4,8 +4,13 @@ import { SITE } from '~/config.mjs';
 import Error404 from '~/components/widgets/Error404.astro';
 
 const title = `Error 404 — ${SITE.name}`;
+
+const meta = {
+	title: title,
+	noindex: true,
+};
 ---
 
-<Layout meta={{ title }}>
+<Layout meta={meta}>
 	<Error404 />
 </Layout>
