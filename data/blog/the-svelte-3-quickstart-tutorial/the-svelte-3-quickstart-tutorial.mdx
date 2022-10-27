@@ -365,7 +365,7 @@ And don't forget to add the corresponding HTML element to the template code as w
 
 Next, let's take a look at events in Svelte. We've already seen a first example in the previous examples when responding to the click event of a button:
 
-```markup
+```html
 <button on:click={toggle}>
 ```
 
@@ -373,7 +373,7 @@ By using that line of code we've connected the toggle function (which needs to b
   
 Let's take a look at a second example which is inserted into a new component file _EventDemo.svelte_:
 
-```markup
+```html
 <script>
     let m = { x: 0, y: 0 };
 
@@ -417,7 +417,7 @@ And make sure to include the `<EventDemo />` element in the template code.
 
 Last but not least let's explore bindings in Svelte. Again we're starting with a simple practical example to understand the concept. In _BindingDemo.svelte_ add the following sample code:
 
-```markup
+```html
 <script>
     let name = "Sebastian"
 </script>

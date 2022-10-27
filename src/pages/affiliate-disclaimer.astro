@@ -1,0 +1,16 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { SITE } from '~/config.mjs';
+import AffiliateDisclaimer from '~/components/widgets/AffiliateDisclaimer.astro';
+
+const title = `Affiliate Discailmer — ${SITE.name}`;
+
+const meta = {
+	title: title,
+	noindex: true,
+};
+---
+
+<Layout meta={meta}>
+	<AffiliateDisclaimer />
+</Layout>
