@@ -2,9 +2,12 @@
 publishDate: "Oct 06 2022"
 title: "How To Write CSV Files With Node.js"
 description: "A Comma Separated Values (CSV) file is a plain text file that contains a list of data. Node is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Executing JavaScript apps outside the browser provides us with additional functionality such as reading and writing to files by using the Node standard module fs. In this short tutorial you’ll learn how to use functionality from the fs module to write CSV files with Node."
-image: "~/assets/images/Thumbnail_Node_CSV.png"
+image: "./images/Thumbnail_Node_CSV.png"
 tags: [nodejs, javascript, back-end]
 ---
+import { Image } from '@astrojs/image/components';
+import YouTube from '~/components/widgets/YouTube.astro';
+export const components = { img: Image };
 
 A Comma Separated Values (CSV) file is a plain text file that contains a list of data. Node is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Executing JavaScript apps outside the browser provides us with additional functionality such as reading and writing to files by using the Node standard module fs. In this short tutorial you’ll learn how to use functionality from the fs module to write CSV files with Node.
 
@@ -12,7 +15,7 @@ A Comma Separated Values (CSV) file is a plain text file that contains a list of
 
 To get started we need to create a new Node project. This is quite easy, just enter the following command on the command line:
 
-```
+```bash
 mkdir write_csv_file
 cd write_csv_file
 npm init
@@ -92,4 +95,14 @@ const startApp = () => {
 startApp();
 ```
 
-In the following listing you can see again the complete code in file write_csv_file.js:
+In the following listing you can see again the complete code in file *write_csv_file.js*:
+
+If you now start the Node app by using the following command:
+
+```bash 
+$ node write_csv_file.js 
+```
+
+you should be able to see that a new file _contacts.csv_ is created (if not existing) in the project folder and that the two data sets are inserted in CSV format in the file:
+
+![](./images/10.png)
