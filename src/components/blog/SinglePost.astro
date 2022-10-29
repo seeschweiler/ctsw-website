@@ -2,6 +2,7 @@
 import type { MDXInstance } from 'astro';
 import Picture from '~/components/core/Picture.astro';
 import PostTags from '~/components/atoms/Tags.astro';
+import AffiliateAd from '../widgets/AffiliateAd.astro';
 
 import { getFormattedDate } from '~/utils/utils';
 
@@ -13,6 +14,7 @@ interface MDX extends MDXInstance<any> {
 const { Content, components } = post as MDX;
 ---
 
+<AffiliateAd />
 <section class="py-8 sm:py-16 lg:py-20 mx-auto">
 	<article>
 		<header>
