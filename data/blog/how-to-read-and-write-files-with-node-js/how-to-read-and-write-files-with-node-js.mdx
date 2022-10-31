@@ -1,0 +1,193 @@
+---
+publishDate: "Aug 6 2022"
+title: "How To Read And Write Files With Node.js
+"
+description: "By using the Node.js module fs it’s easy to read from and write to files. In this tutorial you’ll earn how to use this module. Therefore a simple example will be implemented guiding you through the steps needed to perform read and write tasks with Node."
+excerpt: "By using the Node.js module fs it’s easy to read from and write to files. In this tutorial you’ll earn how to use this module. Therefore a simple example will be implemented guiding you through the steps needed to perform read and write tasks with Node."
+image: "./images/title.png"
+tags: [javascript, nodejs,]
+---
+import { Image } from '@astrojs/image/components';
+import YouTube from '~/components/widgets/YouTube.astro';
+export const components = { img: Image };
+
+By using the Node.js module fs it’s easy to read from and write to files. In this tutorial you’ll earn how to use this module. Therefore a simple example will be implemented guiding you through the steps needed to perform read and write tasks with Node.
+
+In order to learn about file handling in Node.js in the following we’ll build a simply Node.js sample application. The app we’re going to build will read JSON files from a directory called names. Each JSON file located in that folder should include a name information in the following form:
+
+```json
+{ “name”: “John” }
+```
+
+Our Node app will run through all files and extract the name information. Then the program will concatenate all names (separated by comma) and output the result in a new file with name names.txt.
+
+Let’s get started building that application from scratch …
+
+## Step 1: Import Node.js Packages path and fs
+
+Create a new file app.js and start adding the following two lines of code to get a reference to the fs and the path Node.js package:
+
+```js
+const fs = require(“fs”).promises
+const path = require(“path”)
+```
+
+## Step 2: Read From Files
+
+Second, let’s implement a function readNamesFromFiles in app.js which takes an array of files and which reads the value of a name property from each JSON file. The names are added into an array and the array is returned by the function:
+
+```js
+async function readNamesFromFiles(nameFiles) {
+    let names = [];
+
+    for (file of nameFiles) {
+        const data = JSON.parse(await fs.readFile(file));
+        names.push(data.name)
+    }
+
+    return names;
+}
+```
+
+We’re making use of the fs.readFile method to read the content of each file. By passing the content directly to the JSON.parse method, we’re parsing the JSON content, so that we’re able to access JSON properties directly. The property can be accessed by using data.name and the value is directly pushed into the names array. Finally the function returns the names array with all the names which could be retrieved from the files which have been passed to the readNamesFromFiles function as parameter.
+
+## Step 3: Get All Name Files
+
+The next step is to implement a function which helps us to get all the files names in folder names. This function is called getNameFiles and is implemented in the following way:
+
+```js
+async function getNameFiles(folderName) {
+    let nameFiles = []
+
+    const items = await fs.readdir(folderName, {withFileTypes: true})
+
+    for (item of items) {
+        if (!item.isDirectory()) {
+            if (path.extname(item.name) === ".json") {
+                nameFiles.push(path.join(folderName, item.name))
+            }
+        }
+    }
+    return nameFiles
+}
+```
+
+The function is expecting to get the folder name from which all files should be retrieved as parameter.
+
+The fs.readdir method is then used to retrieve all the files from the folder which is passed to that method in the first parameter.
+
+Next step is to iterate through the items which have been retrieved from the call of readdir. Items can be files or folders. As we only want to retrieve files we can the item.isDirectory to exclude all folders.
+
+Next we’re making sure that we’re only adding files which have a .json file extension. Finally the file is added to the nameFiles array which is returned by the function. We’re adding the file by using the complete path and filename by calling path.join(folderName, item.name).
+
+## Step 4: Implement main Function
+
+Ok, let’s tie everything together and implement the main function of our Node app:
+
+```js
+async function main() {
+    const nameFolder = path.join(__dirname, "names")
+
+    const nameFiles = await getNameFiles(nameFolder)
+    const names = await readNamesFromFiles(nameFiles)
+
+    await fs.writeFile(
+        path.join(__dirname, "names.txt"),
+        names.join(', '),
+        { flag: "a"}
+    )
+}
+```
+
+First we’re creating a variable nameFolder which holds the full path and name of the names subfolder where the files are located which we need to read.
+
+Then we’re calling getNameFiles and pass nameFolder as a parameter to that function call. This function returns all files which we need to read as an array which is stored in nameFiles.
+
+The nameFiles array is then passed into the call of readNamesFromFile function. This function returns the array of all names. This array is stored in names.
+
+In order to write all concatenated names as one string to file names.txt we’re calling method fs.writeFile. This file takes three parameter. First parameter is the full path and name of the file to write to. Second parameter is the string which should be written to that file. In order to concatenate all name value (separated by comma) we’re passing the result of the call of the names.join(`, `) method.
+
+The third parameter contains an object with additional configuration options for the write operation. We’re using this object to set the property flag to valie “a” because we’re executing the write operation in append mode.
+
+Ok, that’s it — everything is in place and we’re ready to take a look at the complete implementation code and try everything out.
+
+## Complete Code Of app.js
+
+In the following code listing you can again read through the complete JavaScript code in app.js:
+
+```js
+const fs = require("fs").promises
+const path = require("path")
+
+async function readNamesFromFiles(nameFiles) {
+    let names = [];
+
+    for (file of nameFiles) {
+        const data = JSON.parse(await fs.readFile(file));
+        names.push(data.name)
+    }
+
+    return names;
+}
+
+async function getNameFiles(folderName) {
+    let nameFiles = []
+
+    const items = await fs.readdir(folderName, {withFileTypes: true})
+
+    for (item of items) {
+        if (!item.isDirectory()) {
+            if (path.extname(item.name) === ".json") {
+                nameFiles.push(path.join(folderName, item.name))
+            }
+        }
+    }
+    return nameFiles
+}
+
+async function main() {
+    const nameFolder = path.join(__dirname, "names")
+
+    const nameFiles = await getNameFiles(nameFolder)
+    const names = await readNamesFromFiles(nameFiles)
+
+    await fs.writeFile(
+        path.join(__dirname, "names.txt"),
+        names.join(', '),
+        { flag: "a"}
+    )
+}
+
+main()
+```
+
+Finally start the Node app by typing in:
+
+```bash
+$ node app.js
+```
+
+Let’s assume you started with the following three JSON files in the names subfolder:
+
+*names/1.json:*
+
+```json
+{ “name”: “Sebastian” }
+```
+
+*names/2.json:*
+
+```json
+{ “name”: “Maria” }
+```
+
+*names/3.json:*
+```json
+{ “name”: “John” }
+```
+
+You should then get the following result in names.txt:
+
+```
+Sebastian, Maria, John
+```
