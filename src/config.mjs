@@ -8,7 +8,7 @@ export const SITE = {
 	description: 'Development tutorials and step-by-step guides.',
 
 	googleAnalyticsId: false, // or "G-XXXXXXXXXX",
-	googleSiteVerificationId: 'orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M',
+	googleSiteVerificationId: 'cR1TRhEXqJlEJnYj0FeY2KbWX4ea6YgdhbkaEqjzByk',
 };
 
 export const SWITCHES = {
