@@ -4,8 +4,8 @@ export const SITE = {
 	origin: 'https://codingthesmartway.com',
 	basePathname: '/',
 
-	title: 'CodingTheSmartWay.com',
-	description: 'Development tutorials and step-by-step guides.',
+	title: 'CodingTheSmartWay.com - Developer Tutorials',
+	description: 'CodingTheSmartWay.com provides tutorials and step-by-step guides for developers.',
 
 	googleAnalyticsId: false, // or "G-XXXXXXXXXX",
 	googleSiteVerificationId: 'cR1TRhEXqJlEJnYj0FeY2KbWX4ea6YgdhbkaEqjzByk',
