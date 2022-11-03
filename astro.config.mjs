@@ -51,7 +51,7 @@ export default defineConfig({
     shikiConfig: {
       theme: 'nord',
       langs: ['javascript'],
-      wrap: true
+      wrap: false
     },
   }
 });
