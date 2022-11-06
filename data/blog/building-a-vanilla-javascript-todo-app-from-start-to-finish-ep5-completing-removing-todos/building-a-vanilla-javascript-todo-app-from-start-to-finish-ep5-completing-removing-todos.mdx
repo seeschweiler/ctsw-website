@@ -1,0 +1,88 @@
+---
+title: "Building A Vanilla JavaScript Todo App From Start To Finish | EP5: Completing & Removing Todos"
+publishDate: "2020-07-22"
+image: "./images/title-6.png"
+tags: [ javascript, javascript, vanilla-javascript,]
+description: "In the last part of this series we’ll finalize our JavaScript Todo App by adding missing functionality like completing and removing todo items. " 
+excerpt: "In the last part of this series we’ll finalize our JavaScript Todo App by adding missing functionality like completing and removing todo items. " 
+---
+import { Image } from '@astrojs/image/components';
+import YouTube from '~/components/widgets/YouTube.astro';
+export const components = { img: Image };
+
+<YouTube url="https://youtu.be/o_zFRRepsmE" />
+
+In the last part of this series we’ll finalize our JavaScript Todo App by adding missing functionality like completing and removing todo items.  
+  
+Therefore we’re adding another click event handler function for the _ul_ element.
+
+```javascript
+document.querySelector('ul').addEventListener('click', handleClickDeleteOrCheck);
+```
+
+Everytime the user clicks anywhere in the list output the _handleClickDeleteOrCheck_ function will be executed:
+
+```javascript
+function handleClickDeleteOrCheck(e) {
+    if (e.target.name == 'checkButton')
+        checkTodo(e);
+
+    if (e.target.name == 'deleteButton')
+        deleteTodo(e);
+}
+```
+
+Inside that function it needs to be distinguished if the click comes from a check button or from a delete button. In case a check button is clicked the _checkTodo_ helper function is called in case a delete button is clicked the _deleteTodo_ helper function is executed:
+
+```javascript
+function checkTodo(e) {
+    let item = e.target.parentNode;
+    if (item.style.textDecoration == 'line-through')
+        item.style.textDecoration = 'none';
+    else
+        item.style.textDecoration = 'line-through';
+}
+
+function deleteTodo(e) {
+    let item = e.target.parentNode;
+    
+    item.addEventListener('transitionend', function () {
+        item.remove(); 
+    });
+
+    item.classList.add('todo-list-item-fall');
+}
+```
+
+Inside the _checkTodo_ function we need to retrieve a reference to the parent node (list item), so that we’re able to apply a text decoration style of _line-through_ to this item.  
+  
+Inside the deleteTodo function we’re retrieving a reference to the parent node as well. Furthermore we’re registering an event handler function for the _transitionend_ event of this node. This is needed due to the fact that a CSS transition should be applied when a _todo_ element is removed from the list.  
+  
+The transition is started by adding the CSS class _todo-list-item-fall_ to the element. Once the transition effect is completed the event is triggered and inside the event handler function the todo item is removed from the list by calling _item.remove_.  
+  
+Inside _styles.css_ we need to add the following two CSS class definitions in order to make the transition effect work:
+
+```css
+.todo-list-item {
+    transition: all 0.3s ease-out;
+}
+
+.todo-list-item-fall {
+    transform: translateY(12rem) rotateZ(10deg);
+    opacity: 0;
+}
+```
+
+Finally we’re registering and implementing another click event handler function for the _Clear All_ link.
+
+```javascript
+document.getElementById('clearAll').addEventListener('click', handleClearAll);
+```
+
+In making sure to clear the complete list inside the event handler function by selecting the _ul_ element and then setting the _innerHTML_ property to an empty string:
+
+```javascript
+function handleClearAll(e) {
+    document.querySelector('ul').innerHTML = '';
+}
+```
