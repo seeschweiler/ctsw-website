@@ -1,0 +1,70 @@
+---
+title: "Building A Vanilla JavaScript Todo App From Start To Finish | EP4: Adding Todos"
+publishDate: "2020-07-18"
+image: "./images/title-5.png"
+tags: [ javascript, javascript, vanilla-javascript,]
+description: "In this episode of the _Building A Vanilla JavaScript Todo App From Start To Finish_ we’re starting to add the necessary JavaScript code to our app. We’ll start implement the logic which is needed to add new tasks to the list. Therefore we need to handle the submit event of the form and generate the corresponding list output." 
+excerpt: "In this episode of the _Building A Vanilla JavaScript Todo App From Start To Finish_ we’re starting to add the necessary JavaScript code to our app. We’ll start implement the logic which is needed to add new tasks to the list. Therefore we need to handle the submit event of the form and generate the corresponding list output." 
+---
+import { Image } from '@astrojs/image/components';
+import YouTube from '~/components/widgets/YouTube.astro';
+export const components = { img: Image };
+
+<YouTube url="https://youtu.be/XLxUtvbhjss" />
+
+In this episode of the _Building A Vanilla JavaScript Todo App From Start To Finish_ we’re starting to add the necessary JavaScript code to our app. We’ll start implement the logic which is needed to add new tasks to the list. Therefore we need to handle the submit event of the form and generate the corresponding list output.  
+  
+Go to _app.js_ and first of all add and submit event handler function for the submit event type of the form by adding the following line of code:
+
+```javascript
+// Selectors
+document.querySelector('form').addEventListener('submit', handleSubmitForm);
+```
+
+Here we’re making use of the _document.querySelector_ method to retrieve an element reference to the form element. Next we’re we’re calling _addEventListener_ to register the _handleSubmitForm_ event handler function to handle the submit event of the form.  
+  
+The _handleSubmitForm_ function is not existing yet, so we need to implement this function in the next step:
+
+```javascript
+// Event Handlers
+function handleSubmitForm(e) {
+    e.preventDefault();
+    let input = document.querySelector('input');
+    if (input.value != '')
+        addTodo(input.value);
+    input.value = '';
+}
+```
+
+Inside this function we’re first making sure that the default form submit behaviour of the browser is not taking place by calling _e.preventDefault()_. Next we’re retrieving an reference to the input element by using the _querySelector_ method once again. We’re storing that element reference in _input_, so that we’re able to access the input value by using _input.value_.  
+  
+If the input value if not empty the _addTodo_ helper function is called and the current input value is passed into that function as a parameter.  
+  
+Finally the input value is reset to an empty string.  
+  
+Let’s implement the _addTodo_ helper function as well:
+
+```javascript
+// Helpers
+function addTodo(todo) {
+    let ul = document.querySelector('ul');
+    let li = document.createElement('li');
+    li.innerHTML = `
+        <span class="todo-item">${todo}</span>
+        <button name="checkButton"><i class="fas fa-check-square"></i></button>
+        <button name="deleteButton" ><i class="fas fa-trash"></i></button>
+    `;
+    li.classList.add('todo-list-item');
+    ul.appendChild(li);
+}
+```
+
+First of all a reference to the _ul_ element is retrieved. Next a new _li_ element is created by using the _document.createElement_ method. This is new element is stored in the variable _li_. This is the list element which is containing the output which is done for every todo element. Therefore we’re inserting the inner HTML code of the _li_ element by assigning the code string to property _innerHTML_ of the li element.  
+  
+The output consists of the todo text, a check button and a delete button.  
+  
+Finally the new _li_ element is added as a child to the _ul_ element, so that it becomes visible in the browser.
+
+### What’s Next
+
+In the next episode we’re going to complete the JavaScript todo application by adding the check and delete functionality.
