@@ -1,0 +1,86 @@
+---
+title: "Building A Vanilla JavaScript Todo App From Start To Finish | EP 2: Adding UI Elements"
+publishDate: "2020-07-13"
+image: "./images/title-3.png"
+tags: [ javascript, javascript, vanilla-javascript,]
+description: "In the first part of the _Building A Vanilla JavaScript Todo App From Start To Finish_ series we started to setup the project and prepared the basic HTML page by including things like Google Fonts, and the Font Awesome Icon library.  "
+excerpt: "In the first part of the _Building A Vanilla JavaScript Todo App From Start To Finish_ series we started to setup the project and prepared the basic HTML page by including things like Google Fonts, and the Font Awesome Icon library.  "
+---
+import { Image } from '@astrojs/image/components';
+import YouTube from '~/components/widgets/YouTube.astro';
+export const components = { img: Image };
+
+
+<YouTube url="https://youtu.be/Sg6T7fp-zo8" />
+
+In the first part of the _Building A Vanilla JavaScript Todo App From Start To Finish_ series we started to setup the project and prepared the basic HTML page by including things like Google Fonts, and the Font Awesome Icon library.  
+  
+We now ready to go on and extend the application by bringing in the UI element we need.
+
+### Structuring The Body Section
+
+In the body section of _index.html_ start by adding a header section and a div element like you can see in the following listing:
+
+```html
+<body class="container">
+    <header class="logo">
+    </header>
+
+    <div class="main"> 
+    </div>
+    
+    <script type="text/javascript" src="app.js"></script>
+</body>
+```
+
+Here we’re already assigning the CSS classes _logo_ and _main_. Of course these classes are not existing yet. Later on, when styling the application we’ll need to define these CSS classes in _styles.css_.
+
+### Adding The Header Logo
+
+Next we’re using the header section to add a logo and a headline:
+
+```html
+    <header class="logo">
+        <a href="https://codingthesmartway.com" target="_blank">
+            <img class="logo" src="images/ctsw-logo.png" alt="CodingTheSmartWay.com">
+        </a>
+
+        <h2 class="headline">Vanilla JavaScript Todo App</h2>
+    </header>
+```
+
+Furthermore we’re adding a form into the div section:
+
+```html
+    <div class="main"> 
+        <form>
+            <input type="text" placeholder="New Todo ...">
+            <button type="submit"><i class="fas fa-plus-square"></i></button>
+        </form>
+    </div>
+```
+
+The form is used to let the user input and create new tasks and therefore is containing two elements:
+
+- _input_: the input element is of type _text_ and used to enter the task description
+- _button_: the button is of type _submit_ and used to submit the form. The button contains an icon which is coming from the Font Awesome library by using classes _fas_ and _fa-plus-square_.
+
+Last thing to add is another _div_ element with a class of _todoList_ assigned:
+
+```html
+    <div class="main"> 
+        <form>
+            <input type="text" placeholder="New Todo ...">
+            <button type="submit"><i class="fas fa-plus-square"></i></button>
+        </form>
+
+        <div class="todoList">
+            <ul>
+            </ul>
+            <a class="clearAll" id="clearAll">Clear All</a>
+        </div>
+
+    </div>
+```
+
+This _div_ block will be used to output the list of tasks (therefore an empty _ul_ element is already inserted). Furthermore the Clear All link is printed out, which will be used to clear the complete list tasks at once.
