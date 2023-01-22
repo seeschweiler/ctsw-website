@@ -1,0 +1,97 @@
+---
+title: "A Beginner’s Guide to Using Regular Expressions in Python"
+publishDate: "2023-01-22"
+image: "./images/title.png"
+tags: [ python, regular expressions,  ]
+description: "Regular expressions are a pattern-matching syntax used for matching, extracting, and manipulating text. They can be used to check if a string contains a specified search pattern, to extract or replace parts of a string, or to perform any other manipulation of text that can be achieved using a set of rules. In Python, regular expressions can be used through the re module. This is an introduction of how to use regular expressions in Python." 
+excerpt: "Regular expressions are a pattern-matching syntax used for matching, extracting, and manipulating text. They can be used to check if a string contains a specified search pattern, to extract or replace parts of a string, or to perform any other manipulation of text that can be achieved using a set of rules. In Python, regular expressions can be used through the re module. This is an introduction of how to use regular expressions in Python."
+---
+import { Image } from '@astrojs/image/components';
+import YouTube from '~/components/widgets/YouTube.astro';
+export const components = { img: Image };
+
+Regular expressions are a pattern-matching syntax used for matching, extracting, and manipulating text. They can be used to check if a string contains a specified search pattern, to extract or replace parts of a string, or to perform any other manipulation of text that can be achieved using a set of rules. In Python, regular expressions can be used through the re module. This is an introduction of how to use regular expressions in Python.
+
+In Python, regular expressions can be used through the re module. To use the module, you first need to import it using the following statement:
+
+```python
+import re
+```
+
+The most commonly used function in the module is re.search(), which returns a match object if the pattern is found in the string, otherwise None. Here is an example:
+
+```python
+text = "The dog is playing in the garden."
+pattern = "dog"
+
+match = re.search(pattern, text)
+
+if match:
+    print("The pattern was found in the text.")
+else:
+    print("The pattern was not found in the text.")
+```
+
+Another useful function is `re.sub()` which replace all occurrences of the pattern in the string with a new string
+
+```python
+import re
+
+text = "The dog is playing in the garden."
+pattern = "dog"
+new_text = re.sub(pattern, "cat", text)
+print(new_text)
+```
+
+Of course regular expressions in Python also supports special characters and set of rules called meta characters.
+
+Here is an overview of some of the most common meta characters used in regular expressions:
+
+* `.` - Matches any single character except a newline.
+* `*` - Matches zero or more of the preceding character or group.
+* `+` - Matches one or more of the preceding character or group.
+* `?` - Matches zero or one of the preceding character or group.
+* `{}` - Specifies a specific number of occurrences of the preceding character or group. For example, `a{3}` matches exactly three occurrences of the letter "a".
+* `[]` - Specifies a set of characters that can match a single character in the input. For example, `[abc]` matches any of the characters "a", "b", or "c".
+* `()` - Groups a series of characters together and creates a capturing group.
+* `|` - Specifies an "or" relationship between multiple patterns. For example, cat|dog matches either "cat" or "dog".
+* `^` - Matches the start of a line or string.
+* `$` - Matches the end of a line or string.
+* `\` - Escapes a special character, allowing it to be treated as a literal character. For example, `\.` matches a period, instead of any character.
+
+It’s worth noting that some of these characters have special meaning in python strings as well, so you might need to escape them with a backslash `\` to use them in regex, for example `\.` will match a period but `\.` will match a backslash followed by a period.
+
+Also, some meta characters have different meaning in different contexts, like `*` and `+` when used in a character set `[]` they will match the literal `*` or `+` respectively.
+
+Let’s take a look at an example using multiple meta characters in a more complex regular expression with the `re.search()` function in Python:
+
+```python
+import re
+
+text = "Today is Saturday, the 21st of January 2023"
+
+# Using multiple meta characters
+pattern = "Monday, .* (\w+) of (\w+)"
+match = re.search(pattern, text)
+if match:
+    print(f"The pattern was found in the text. The day of the month is {match.group(1)} and the year is {match.group(2)}.")
+else:
+    print("The pattern was not found in the text.")
+```
+
+In this example, the regular expression uses multiple meta characters:
+
+* `Monday`, matches the string "Monday,"
+* `.*` matches any character zero or more times
+* `(\w+)` matches one or more word characters, and creates a capturing group to extract the day of the month
+* `of` matches the string "of"
+* `(\w+)` matches one or more word characters, and creates a capturing group to extract the year
+  
+`re.search()` function will return a match object if the pattern is found anywhere in the string, otherwise None. In this example, `match.group(1)` will return the day of the month captured by the first capturing group `(\w+)` and `match.group(2)` will return the year captured by the second capturing group `(\w+)`.
+
+## Conclusion
+
+Regular expressions are a powerful tool for working with text data and can greatly simplify many text processing tasks. Python’s re module provides a wide range of functions and options for working with regular expressions, making it easy to search, extract, and replace text. The use of meta characters and special rules like capturing groups can make the pattern matching more precise and efficient.
+
+This article provided an introduction to using regular expressions in Python, and covered some of the most common meta characters and their uses. The examples provided in this article should give you a good starting point for working with regular expressions in your own projects. However, it’s worth noting that regular expressions can be tricky and it takes time to master them.    
+
