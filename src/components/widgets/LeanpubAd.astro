@@ -7,8 +7,8 @@ import { SWITCHES } from '~/config.mjs';
 	SWITCHES.leanpubAds && (
 		<section class="pt-10 scroll-mt-16" id="leanpubad">
 			<div class="px-4 py-2 mx-auto max-w-4xl lg:px-8 lg:py-3 bg-gray-50 dark:bg-slate-800">
-				<div class="max-w-xl mx-auto lg:max-w-2xl">
-					<div class="grid grid-cols-2 gap-4 place-items-center">
+				<div class="max-w-xl mx-auto lg:max-w-2xl sm:text-left text-center">
+					<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 place-items-center">
 						<div>
 							<a href="https://leanpub.com/mastering-openai-api-programming" target="_blank" rel="noopener">
 								<Image
@@ -17,7 +17,7 @@ import { SWITCHES } from '~/config.mjs';
 									loading="eager"
 									fit="contain"
 									aspectRatio="2550:3300"
-									src="book.png"
+									src={import('~/assets/images/book.png')}
 								/>
 							</a>
 						</div>
@@ -35,7 +35,7 @@ import { SWITCHES } from '~/config.mjs';
 								revolutionize your projects.
 							</p>
 							<div class="py-4 not-prose">
-								<div class="flex  items-center">
+								<div class="flex items-center">
 									<a
 										class="btn text-white text-sm bg-purple-600 hover:bg-purple-800 dark:bg-purple-700 dark:hover:bg-purple-500"
 										href="https://leanpub.com/mastering-openai-api-programming"
