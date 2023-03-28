@@ -13,8 +13,10 @@ export const SITE = {
 
 export const SWITCHES = {
 	youtubeLinks: true,
-	affiliateLinks: true,
-}
+	affiliateLinks: false,
+	carbonAds: false,
+	leanpubAds: true,
+};
 
 export const BLOG = {
 	disabled: false,
@@ -27,7 +29,7 @@ export const BLOG = {
 
 	post: {
 		disabled: false,
-		pathname: '', // empty for /some-post, value for /pathname/some-post 
+		pathname: '', // empty for /some-post, value for /pathname/some-post
 	},
 
 	category: {

@@ -5,6 +5,8 @@ import { SITE, BLOG } from '~/config.mjs';
 import Layout from '~/layouts/PageLayout.astro';
 import SinglePost from '~/components/blog/SinglePost.astro';
 
+import LeanpubAd from '~/components/widgets/LeanpubAd.astro';
+
 import { getCanonical, getPermalink, cleanSlug, POST_BASE } from '~/utils/permalinks';
 import { fetchPosts } from '~/utils/posts';
 import { findImage } from '~/utils/images';
@@ -36,5 +38,6 @@ const meta = {
 ---
 
 <Layout {meta}>
+	<LeanpubAd />
 	<SinglePost post={{ ...post, image: meta.image }} />
 </Layout>
