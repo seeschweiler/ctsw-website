@@ -1,5 +1,5 @@
 ---
-import { Image } from '@astrojs/image/components';
+import { Image, Picture } from '@astrojs/image/components';
 import { SWITCHES } from '~/config.mjs';
 ---
 
@@ -7,21 +7,23 @@ import { SWITCHES } from '~/config.mjs';
 	SWITCHES.leanpubAds && (
 		<section class="pt-10 scroll-mt-16" id="leanpubad">
 			<div class="px-4 py-2 mx-auto max-w-4xl lg:px-8 lg:py-3 bg-gray-50 dark:bg-slate-800">
-				<div class="max-w-xl mx-auto lg:max-w-2xl sm:text-left text-center">
-					<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 place-items-center">
-						<div>
+				<div class="max-w-xl mx-auto lg:max-w-4xl sm:text-left">
+					<div class="flex">
+						<div class="mr-5 basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6">
 							<a href="https://leanpub.com/mastering-openai-api-programming" target="_blank" rel="noopener">
-								<Image
+								<Picture
+									src={import('~/assets/images/book.png')}
+									class=""
+									widths={[100, 200, 300]}
+									sizes=""
 									alt="Book Cover"
-									height="315"
 									loading="eager"
 									fit="contain"
 									aspectRatio="2550:3300"
-									src={import('~/assets/images/book.png')}
 								/>
 							</a>
 						</div>
-						<div>
+						<div class="grow max-w-3xl basis-2/3 md:basis-3/4 lg:basis-4/5 xl:basis-5/6">
 							<p class="text-base text-primary-600 dark:text-primary-200 font-semibold tracking-wide">
 								NEW Book by CodingTheSmartWay
 							</p>
@@ -30,12 +32,10 @@ import { SWITCHES } from '~/config.mjs';
 							</h4>
 							<p class="max-w-3xl mx-auto text-sm text-gray-600 dark:text-slate-400">
 								Unlock the full potential of OpenAI's cutting-edge technologies with Mastering OpenAI API Programming.
-								Dive deep into GPT, Whisper, and DALL-E models, and learn to build powerful AI applications. From
-								chatbots and content generation to speech recognition and image synthesis, harness the power of AI to
-								revolutionize your projects.
+								Dive deep into GPT, Whisper, and DALL-E models, and learn to build powerful AI applications.
 							</p>
 							<div class="py-4 not-prose">
-								<div class="flex justify-center sm:justify-start items-center">
+								<div class="flex  sm:justify-start items-center">
 									<a
 										class="btn text-white text-sm bg-purple-600 hover:bg-purple-800 dark:bg-purple-700 dark:hover:bg-purple-500"
 										href="https://leanpub.com/mastering-openai-api-programming"
