@@ -1,0 +1,152 @@
+---
+publishDate: "Apr 12 2023"
+title: "From ChatGPT to Auto-GPT: Discover the Next Evolution of Autonomous AI That’s Changing the Game"
+description: "Get ready to be amazed by Auto-GPT, the cutting-edge autonomous AI system. Developed by Toran Bruce Richards, Founder and Lead Developer at Significant Gravitas Ltd., Auto-GPT showcases the remarkable capabilities of OpenAI’s GPT-4 language model. As one of the first examples of GPT-4 operating fully autonomously, this game-changing AI is pushing the boundaries of what is possible, from executing tasks in sequence to composing and debugging code."
+excerpt: "Get ready to be amazed by Auto-GPT, the cutting-edge autonomous AI system. Developed by Toran Bruce Richards, Founder and Lead Developer at Significant Gravitas Ltd., Auto-GPT showcases the remarkable capabilities of OpenAI’s GPT-4 language model. As one of the first examples of GPT-4 operating fully autonomously, this game-changing AI is pushing the boundaries of what is possible, from executing tasks in sequence to composing and debugging code."
+image: "./images/title.png"
+tags: [auto-gpt, chatgpt, openai,]
+---
+import { Image } from '@astrojs/image/components';
+import YouTube from '~/components/widgets/YouTube.astro';
+export const components = { img: Image };
+
+Get ready to be amazed by Auto-GPT, the cutting-edge autonomous AI system. Developed by Toran Bruce Richards, Founder and Lead Developer at Significant Gravitas Ltd., Auto-GPT showcases the remarkable capabilities of OpenAI’s GPT-4 language model. As one of the first examples of GPT-4 operating fully autonomously, this game-changing AI is pushing the boundaries of what is possible, from executing tasks in sequence to composing and debugging code.
+
+## Auto-GPT Is A Task-driven Autonomous AI Agent
+
+Task-driven autonomous agents are AI systems designed to perform a wide range of tasks across various domains without human intervention. These agents use advanced AI models, like OpenAI's GPT-4 language model, to complete tasks, generate new tasks based on the results, and prioritize tasks in real-time. By leveraging the power of natural language processing and other AI technologies, these agents can autonomously perform tasks within different constraints and contexts, making them useful for a variety of applications.
+
+However, it's important to consider potential risks, such as data privacy, ethical concerns, and system overload, while using these systems to ensure responsible and successful implementation.
+
+## Installing Auto-GPT
+
+Auto-GPT is based on OpenAI's GPT language models, the open-source project can be found at: [https://github.com/Torantulino/Auto-GPT](https://github.com/Torantulino/Auto-GPT).
+
+![Image](images/10.png)
+
+In order to see Auto-GPT in practice we need to install & setup the project first. To do so we first need to make sure that the following prerequisites are covered:
+
+__1. Python__
+
+You need to have the Python interpreter installed on your system with Python 3.8 or higher.
+
+__2. OpenAI API Key__
+
+To obtain an OpenAI API key, follow these simple steps:
+
+* Visit the OpenAI website at https://www.openai.com/.
+* Sign up for an account if you don't have one. Click "Sign Up" at the top right corner of the homepage and follow the registration process.
+* After signing up or logging in, navigate to the API section by clicking on "API" at the top of the page or by visiting https://www.openai.com/api/.
+* Check the available API pricing plans and choose the one that suits your needs. Some plans may offer free access with limited usage, while others provide different levels of access depending on your requirements and budget.
+* After selecting a plan, you will be provided with your unique API key. Make sure to keep it secure, as it grants access to the API with your account's usage limits and privileges.
+
+__3. Pinecone API Key__
+
+The Pinecone vector database makes it easy to build high-performance vector search applications. Auto-GPT is making use of Pinecone, so you need to retrieve a Pinecone API key as well. Sign up for a free account on the project's website: https://www.pinecone.io/:
+
+![Image](images/20.png)
+
+Once signed in you can retrieve a new Pinecone API key by navigating to the section "API Keys" and the using button "CREATE API KEY" to create a new key:
+
+![Image](images/30.png)
+
+We'll use both the Pinecone API key and the corresponding Environment string to configure Auto-GPT.
+
+Now that all prerequisites are covered, we're ready to move on and clone the Auto-GPT GitHub repository by using the following command:
+
+```bash
+git clone https://github.com/Torantulino/Auto-GPT.git
+```
+
+By cloning the project the content of the repository is downloaded into a new folder Auto-GPT:
+
+![Image](images/40.png)
+
+In the project folder make sure to install all needed dependencies next:
+
+```bash
+pip install -r requirements.text
+```
+_
+Next we need to rename the file _.env.example_ to _.env_ by using the following command:
+
+```bash
+mv .env.template .env
+```
+
+Open the renamed file in your code editor. By default you should be able to see the following content:
+
+```
+PINECONE_API_KEY=your-pinecone-api-key
+PINECONE_ENV=your-pinecone-region
+OPENAI_API_KEY=your-openai-api-key
+ELEVENLABS_API_KEY=your-elevenlabs-api-key
+ELEVENLABS_VOICE_1_ID=your-voice-id
+ELEVENLABS_VOICE_2_ID=your-voice-id
+SMART_LLM_MODEL=gpt-4
+FAST_LLM_MODEL=gpt-3.5-turbo
+GOOGLE_API_KEY=
+CUSTOM_SEARCH_ENGINE_ID=
+USE_AZURE=False
+OPENAI_AZURE_API_BASE=your-base-url-for-azure
+OPENAI_AZURE_API_VERSION=api-version-for-azure
+OPENAI_AZURE_DEPLOYMENT_ID=deployment-id-for-azure
+IMAGE_PROVIDER=dalle
+HUGGINGFACE_API_TOKEN=
+USE_MAC_OS_TTS=False
+```
+
+These are all environment variables which are used by Auto-GPT. At least we need to set the first three variables with the information (OpenAI API Key, Pinecone API Key and Environment) which we have retrieved before:
+
+```
+PINECONE_API_KEY=...
+PINECONE_ENV=...
+OPENAI_API_KEY=...
+```
+
+## Run Auto-GPT
+
+Now we're ready to run a first quick test of Auto-GPT to get a feeling how an autonomous AI is executing:
+
+```bash
+python scripts/main.py
+```
+
+In the first step Auto-GPT is asking you to provide a name for the AI you want to use:
+
+![Image](images/50.png)
+
+For a first example we're inputting "TechResearch-GPT" as the name. The second information you need to provide is a description of the AI's role. We're using the following role description:
+
+_TechResearch-GPT is an AI to autonomously conduct research on tech products_
+
+In th next step Auto-GPT is asking you to provide up to five goals for the AI. Let's input the goals which you can see in the following screenshot to get the AI to perform a market research for headphones:
+
+![Image](images/60.png)
+
+Once you've confirmed by hitting Return you'll see that the AI starts working to reach the goals:
+
+![Image](images/70.png)
+
+In the standard execution mode ChatGPT is asking you for authorizing every single step which Auto-GPT is proposing by entering "y". The first action which the AI is proposing here is to perform a Google search for available headphones. Once we confirm this plan the action is executed:
+
+![Image](images/80.png)
+
+The next action is about browsing websites to retrieve further information about the headphones. Let's confirm this as well.
+
+Finally Auto-GPT is able to compile all collected information into a research report which is written to a file:
+
+![Image](images/90.png)
+
+If you open the created file you'll find the requested information of the top 5 headphones in CSV format:
+
+![Image](images/100.png)
+
+Finally AutoGPT is recognizing that the goals have been completed and it's ready to terminate:
+
+![Image](images/110.png)
+
+## Conclusion
+
+Auto-GPT represents the next leap in autonomous AI technology, harnessing the power of OpenAI's GPT-4 language model to perform a wide range of tasks across various domains without human intervention. This innovative AI system pushes the boundaries of what is possible, enabling users to benefit from its unparalleled capabilities in executing tasks in sequence, composing, and debugging code. As we've demonstrated in this blog post, setting up and using Auto-GPT is a straightforward process, and the potential applications for this groundbreaking AI are virtually limitless.
+
