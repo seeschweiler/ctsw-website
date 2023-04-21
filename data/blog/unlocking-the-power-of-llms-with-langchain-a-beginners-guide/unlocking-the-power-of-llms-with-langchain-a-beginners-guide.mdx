@@ -1,0 +1,277 @@
+---
+publishDate: "Apr 21 2023"
+title: "Unlocking the Power of LLMs with LangChain: A Beginner’s Guide"
+description: "Welcome to “Unlocking the Power of LLMs with LangChain: A Beginner’s Guide”! In this blog post, we will explore the fascinating world of Large Language Models (LLMs) and the revolutionary framework, LangChain. As interest in LLMs and generative AI continues to soar, the need for a user-friendly and versatile toolkit has become increasingly apparent. LangChain, created by Harrison Chase, is an exceptional solution that allows developers to seamlessly build advanced applications around LLMs, such as chatbots, Generative Question-Answering systems, summarization tools, and more."
+excerpt: "Welcome to “Unlocking the Power of LLMs with LangChain: A Beginner’s Guide”! In this blog post, we will explore the fascinating world of Large Language Models (LLMs) and the revolutionary framework, LangChain. As interest in LLMs and generative AI continues to soar, the need for a user-friendly and versatile toolkit has become increasingly apparent. LangChain, created by Harrison Chase, is an exceptional solution that allows developers to seamlessly build advanced applications around LLMs, such as chatbots, Generative Question-Answering systems, summarization tools, and more."
+image: "./images/title.png"
+tags: [langchain, openai, python]
+---
+import { Image } from '@astrojs/image/components';
+import YouTube from '~/components/widgets/YouTube.astro';
+export const components = { img: Image };
+
+Welcome to “Unlocking the Power of LLMs with LangChain: A Beginner’s Guide”! In this blog post, we will explore the fascinating world of Large Language Models (LLMs) and the revolutionary framework, LangChain. As interest in LLMs and generative AI continues to soar, the need for a user-friendly and versatile toolkit has become increasingly apparent. LangChain, created by Harrison Chase, is an exceptional solution that allows developers to seamlessly build advanced applications around LLMs, such as chatbots, Generative Question-Answering systems, summarization tools, and more.
+
+In this beginner’s guide, we will walk you through the fundamentals of LangChain, its core components, and how to leverage its capabilities to create powerful language-based applications. Whether you’re new to the world of LLMs or looking to take your language generation projects to the next level, this guide will provide you with valuable insights and hands-on examples to unlock the full potential of LangChain. Let’s dive in and start harnessing the power of LLMs today!
+
+## Introducing LangChain
+
+Over the past few years, Large Language Models (LLMs) have taken the world of artificial intelligence by storm. With the groundbreaking release of OpenAI’s GPT-3 in 2020, we have witnessed a steady surge in the popularity of LLMs, which has only intensified with recent advancements in the field. These powerful AI models have opened up new possibilities for natural language processing applications, enabling developers to create more sophisticated, human-like interactions in chatbots, question-answering systems, summarization tools, and beyond.
+
+Amidst this rapidly evolving landscape, LangChain has emerged as a versatile framework designed to help developers harness the full potential of LLMs for a wide range of applications. Built around the core concept of “chaining” different components together, LangChain simplifies the process of working with LLMs like GPT-3, GPT-4, and others, allowing you to create customized, advanced use cases with ease.
+
+In this beginner’s guide, our goal is to provide you with a comprehensive introduction to LangChain, walking you through its essential features, demonstrating how to build a simple application, and offering practical tips and best practices to help you make the most of this powerful framework. Whether you are new to LLMs or looking for a streamlined approach to building language generation applications, this guide will serve as a valuable resource to help you unlock the power of LLMs with LangChain.
+
+The project’s website can be found at https://python.langchain.com/en/latest/:
+
+![Image](images/10.png)
+
+## LangChain's Building Blocks & Use Cases
+
+In this section, we will walk you through the main building blocks of LangChain and explore some common use cases to give you a better understanding of the framework's potential.
+
+__Main LangChain Building Blocks__
+__
+1. __Models__: LangChain offers support for various model types and model integrations. It enables you to easily integrate and work with different language models, enhancing your applications' capabilities.
+2. __Prompts__: LangChain allows you to manage, optimize, and serialize prompts efficiently. This helps in generating more accurate and contextually relevant responses from the language models.
+3. __Memory__: LangChain provides a standard interface for memory and a collection of memory implementations. It facilitates the persistence of state between calls in a chain or agent, enhancing the model's knowledge and recall abilities.
+4. __Indexes__: To boost the power of language models, LangChain helps you effectively combine them with your own text data. It provides best practices for indexing and searching through your data sources.
+5. __Chains__: Chains are sequences of calls, either to language models or other utilities. LangChain offers a standard interface for chains, along with numerous integrations and end-to-end chains for common applications.
+6. __Agents__: Agents enable language models to make decisions, take actions, observe outcomes, and repeat the process until the objective is met. LangChain provides a standard interface for agents, a selection of agents to choose from, and examples of end-to-end agents.
+
+__Common Use Cases for LangChain__
+
+1. __Autonomous Agents__: LangChain supports the development of autonomous agents like AutoGPT and BabyAGI, which are long-running agents that perform multiple steps to achieve an objective.
+2. __Agent Simulations__: LangChain facilitates the creation of sandbox environments where agents can interact with each other or react to events, offering insights into their long-term memory abilities.
+4. __Personal Assistants__: LangChain is ideal for building personal assistants that can take actions, remember interactions, and have access to your data, providing personalized assistance.
+5. __Question Answering__: LangChain excels in answering questions over specific documents, utilizing the information within those documents to construct accurate and relevant answers.
+6. __Chatbots__: Leveraging the text generation capabilities of language models, LangChain empowers the creation of engaging chatbots.
+7. __Querying Tabular Data__: LangChain provides guidance on using language models to query data stored in tabular formats, such as CSV files, SQL databases, or dataframes.
+8. __Code Understanding__: LangChain assists in using language models to query and comprehend source code from platforms like GitHub.
+9. __Interacting with APIs__: LangChain enables language models to interact with APIs, providing them with up-to-date information and the ability to take actions based on real-time data.
+10. __Extraction__: LangChain helps extract structured information from unstructured text, streamlining data analysis and interpretation.
+11. __Summarization__: LangChain supports the summarization of longer documents into concise, easily digestible chunks of information, making it a powerful tool for data augmentation.
+12. __Evaluation__: As generative models are challenging to evaluate using traditional metrics, LangChain offers prompts and chains to aid in the evaluation process using language models themselves.
+
+Now that you have a solid understanding of the main building blocks and use cases for LangChain, you are well-equipped to start building powerful applications that harness the true potential of language models.
+
+## Setting Up A LangChain Project With Python
+
+The easiest way to get deeper into LangChain is to start building practical application which we'll do in the following.
+
+Let's start by creating a new project folder first:
+
+```bash
+mkdir langchain-app
+cd langchain-app
+```
+
+Next, create a new Python virtual environment:
+
+```bash
+python3 -m venv env
+```
+
+The command `python3 -m venv env` creates a new virtual environment named `env` using the Python 3 venv module.
+
+Here's a breakdown of the command:
+
+* `python3`: This specifies that the command should use Python 3 as the interpreter.
+* `-m venv`: This flag indicates that the command should run the built-in venv module, which is used for creating virtual environments.
+* `env`: This is the name of the virtual environment you want to create. In this case, the virtual environment will be named `env`.
+
+A virtual environment is an isolated Python environment that allows you to install packages and dependencies specific to a particular project, without interfering with your system-wide Python installation or other projects. This isolation helps maintain consistency and avoid potential conflicts between different project requirements.
+
+Once the virtual environment is created, you can activate it using the following command:
+
+```bash
+source env/bin/activate
+```
+
+With the virtual environment activated, we're ready to install the needed dependencies for our project. First we stat with the installation of LangChain by using the following command:
+
+```bash
+pip install langchain
+```
+
+The output on the console should then look like the following:
+
+![Image](images/20.png)
+
+Let's continue installing the `openai` package:
+
+```bash
+pip install openai
+```
+
+This package is required in order to be able to make use of OpenAI's Large Language Models (LLM) in LangChain.
+
+In order to be able to use OpenAI's models through LangChain you need to retrieve an API key from OpenAI as well. Follow these steps:
+
+1. Go to the OpenAI website: https://www.openai.com/
+2. Click on "Get Started" or "Sign in" if you already have an account.
+3. Create an account or sign in to your existing account.
+4. After signing in, you'll be directed to the OpenAI Dashboard.
+5. Navigate to the API section by clicking "API" in the left sidebar menu or by visiting: https://platform.openai.com/signup
+6. Follow the instructions to access or sign up for the API. If you're eligible, you'll be provided with an API key.
+7. The API key should look like a long alphanumeric string (e.g., "sk-12345abcdeABCDEfghijKLMNOP").
+
+To set the OpenAI Key for our environment you can use the command line:
+
+```bash
+export OPENAI_API_KEY="..."
+```
+
+Or you can include the following two lines of Python code in your script:
+
+```python
+import os
+os.environ["OPENAI_API_KEY"] = "..."
+```
+
+## Using Large Language Models (LLMs) in LangChain
+
+LangChain provides an LLM class designed for interfacing with various language model providers, such as OpenAI, Cohere, and Hugging Face. This class offers a standard interface for all LLM types. In this guide, we'll walk you through integrating LLMs with LangChain using an OpenAI LLM wrapper, although the functionalities highlighted are generic for all LLM types.
+
+1. __Import the LLM wrapper__:
+
+To start, import the desired LLM wrapper. In this example, we'll use the OpenAI wrapper from LangChain:
+
+```python
+from langchain.llms import OpenAI
+llm = OpenAI(model_name="text-ada-001", n=2, best_of=2)
+```
+
+2. __Generate text__:
+
+The most basic functionality of an LLM is generating text. To do this, simply call the LLM instance and pass in a string as the prompt:
+
+```python
+llm("Tell me a joke")
+```
+
+Let's combine everything to a complete Python script in file _langchain-llm-01.py_:
+
+```python
+import os
+from langchain.llms import OpenAI
+
+os.environ["OPENAI_API_KEY"] = ""
+
+llm = OpenAI(model_name="text-ada-001", n=2, best_of=2)
+
+result = llm("Tell me a joke")
+
+print(result)
+```
+
+Let's run this script with:
+
+```bash
+python langchain-llm-01.py
+```
+
+You should then be able to see the output on the console:
+
+![Image](images/30.png)
+
+3. __Generate more detailed output:__
+
+You can also call the LLM instance with a list of inputs, obtaining a more complete response that includes multiple top responses and provider-specific information:
+
+```python
+llm_result = llm.generate(["Tell me a joke", "Tell me a poem"]*15)
+len(llm_result.generations)
+```
+
+The code provided has two main components:
+
+`llm_result = llm.generate(["Tell me a joke", "Tell me a poem"]*15)`
+
+This line of code calls the `generate()` method of the llm instance, which is an instance of the LangChain LLM class. The `generate()` method takes a list of prompts as input. In this case, the list consists of two prompts: "Tell me a joke" and "Tell me a poem". The `*15` operation repeats this list 15 times, resulting in a list with a total of 30 prompts.
+
+When the `generate()` method is called with this list of prompts, the LLM generates responses for each prompt. The method returns a result object that contains the generated responses as well as additional information.
+
+`len(llm_result.generations)`
+
+This line of code retrieves the number of generations (generated responses) in the `llm_result object`. The generations attribute of the `llm_result object` is a list containing the generated responses for each input prompt. In this case, since there are 30 input prompts, the length of the `llm_result.generations` list will be 30, indicating that the LLM has generated 30 responses corresponding to the 30 input prompts.
+
+4. __Access the top responses and provider-specific information:__
+
+You can access the generations provided by the LLM by accessing the generations array:
+
+```python
+llm_result.generations[0]
+```
+
+You can also retrieve more information about the output by using property `llm_output`:
+
+```python
+llm_result.llm_output
+```
+
+The structure available via `llm_output` is specific to the LLM you're using. In case of OpenAI LLM's it should contain information about the token usage, e.g.:
+
+```json
+{'token_usage': {'completion_tokens': 3903,
+  'total_tokens': 4023,
+  'prompt_tokens': 120}}
+```
+
+This is a dictionary representation of the LLM provider-specific information contained in the `llm_output` attribute. In this case, it shows information about token usage:
+
+* `completion_tokens`: The number of tokens generated by the LLM as responses for the input prompts. In this case, the LLM generated 3,903 tokens as completion text.
+* `total_tokens`: The total number of tokens used during the generation process, including both the input prompts and the generated responses. In this case, the total token count is 4,023.
+* `prompt_tokens`: The number of tokens in the input prompts. In this case, the prompts contain 120 tokens in total.
+
+These token counts can be useful when working with LLMs, as they help you understand the token usage and costs associated with generating text using the LLM.
+
+Let's combine it all into a new Python script:
+
+```python
+import os
+from langchain.llms import OpenAI
+
+os.environ["OPENAI_API_KEY"] = "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"
+
+llm = OpenAI(model_name="text-ada-001", n=2, best_of=2)
+
+llm_result = llm.generate(["Tell me a joke", "Tell me a poem"]*15)
+
+print("Number of Genrations provided: ")
+print(len(llm_result.generations))
+print("\n")
+print("Generation Index 0: ")
+print(llm_result.generations[0])
+print("\n")
+print("Addtional information:")
+print(llm_result.llm_output)
+```
+
+Starting the script again will lead to the following results:
+
+![Image](images/40.png)
+
+5. __Estimate token count:__
+
+Estimating the number of tokens in a piece of text is useful because models have a context length (and cost more for more tokens), so it's important to be aware of the text length you're passing in. By default, the tokens are estimated using `tiktoken`.
+
+This means you need to install the corresponding package as well:
+
+```bash
+pip install tiktoken
+```
+
+You can then use the following line of code to get top token estimate:
+
+```python
+llm.get_num_tokens("what a joke")
+```
+
+## Conclusion
+
+We hope that this beginner's guide has provided you with a solid foundation for understanding and utilizing LangChain in your language generation projects. By unlocking the power of LLMs with LangChain, you can now build advanced applications with ease, leveraging cutting-edge models like GPT, and others to create chatbots, QA systems, summarization tools, and so much more.
+
+As you continue to explore LangChain's capabilities and experiment with its various components, remember that the possibilities are virtually endless. This framework offers a flexible and modular approach to language generation, allowing you to create custom solutions tailored to your specific needs. Stay curious and keep learning, as the world of LLMs and generative AI is evolving rapidly, presenting new opportunities and challenges along the way.
+
+So, go forth and harness the full potential of LangChain, using it as a powerful tool to create innovative language-based applications and elevate your projects to new heights. Happy coding, and here's to the future of LLM-powered applications!
