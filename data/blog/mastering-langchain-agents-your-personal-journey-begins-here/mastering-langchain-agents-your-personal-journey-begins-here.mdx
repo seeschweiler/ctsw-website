@@ -1,0 +1,68 @@
+---
+title: "Mastering LangChain Agents: Your Personal Journey Begins Here"
+publishDate: "2023-06-01"
+image: "./images/title.png"
+tags: [ langchain, agents, ]
+description: "Hello, fellow tech enthusiasts! Today, I want to share my journey of getting started with Agents in LangChain. If you're not familiar with LangChain, it's a powerful tool that allows you to create complex chains of calls to language models and other tools, depending on user input. It's like having a personal assistant that can make decisions based on the task at hand. Let's dive in!" 
+excerpt: "Hello, fellow tech enthusiasts! Today, I want to share my journey of getting started with Agents in LangChain. If you're not familiar with LangChain, it's a powerful tool that allows you to create complex chains of calls to language models and other tools, depending on user input. It's like having a personal assistant that can make decisions based on the task at hand. Let's dive in!"
+---
+import { Image } from '@astrojs/image/components';
+import YouTube from '~/components/widgets/YouTube.astro';
+export const components = { img: Image };
+
+Hello, fellow tech enthusiasts! Today, I want to share my journey of getting started with Agents in LangChain. If you're not familiar with LangChain, it's a powerful tool that allows you to create complex chains of calls to language models and other tools, depending on user input. It's like having a personal assistant that can make decisions based on the task at hand. Let's dive in!
+
+## The Concept of Agents in LangChain
+
+In LangChain, an agent is a component that has access to a suite of tools and can decide which tool to use based on the user's input. There are two main types of agents: "Action Agents" and "Plan-and-Execute Agents".
+
+Action Agents decide an action to take and execute that action one step at a time. They are more conventional and suitable for small tasks. On the other hand, Plan-and-Execute Agents first decide a plan of actions to take, and then execute those actions one at a time. They are ideal for more complex or long-running tasks, as the initial planning step helps maintain long-term objectives and focus. However, this comes with the trade-off of more calls and higher latency.
+
+## The Anatomy of an Agent
+
+An agent in LangChain is composed of several key components:
+
+* Agent: This is where the logic of the application lives. It takes in user input along with a list of previous steps the agent has taken, and returns either an AgentAction or AgentFinish.
+* Tools: These are the actions an agent can take. The tools you give an agent highly depend on what you want the agent to do.
+* Toolkits: These are groups of tools designed for a specific use case.
+* Agent Executor: This wraps an agent and a list of tools. It is responsible for running the agent iteratively until the stopping criteria is met.
+
+## Getting Hands-On with Agents
+
+Now, let's get our hands dirty and see how to use agents in practice. For this, we'll use the simplest, highest level API provided by LangChain.
+
+First, we need to understand a few key concepts:
+
+* Tool: A function that performs a specific duty. This can be things like Google Search, Database lookup, Python REPL, other chains. The interface for a tool is currently a function that is expected to have a string as an input, with a string as an output.
+* LLM: The language model powering the agent.
+* Agent: The agent to use. This should be a string that references a support agent class.
+
+Here's a simple example of how to initialize and run an agent:
+
+```python
+from langchain.agents import load_tools
+from langchain.agents import initialize_agent
+from langchain.agents import AgentType
+from langchain.llms import OpenAI
+
+# Load the language model
+llm = OpenAI(temperature=0)
+
+# Load some tools to use
+tools = load_tools(["serpapi", "llm-math"], llm=llm)
+
+# Initialize an agent with the tools, the language model, and the type of agent
+agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
+
+# Test the agent
+agent.run("Who is Leo DiCaprio's girlfriend? What is her current age raised to the 0.43 power?")
+```
+
+This agent will first find out who Leo DiCaprio's girlfriend is, then calculate her age raised to the 0.43 power, and finally return the answer. Pretty cool, right?
+
+## Wrapping Up
+
+In conclusion, agents in LangChain are a powerful tool that can help you create complex chains of calls to language models and other tools. They can be customized to suit your specific needs, whether it's for small tasks or more complex, long-running tasks. The key is to understand the different components of an agent and how they work together to make decisions based on user input.
+
+I hope this blog post has given you a good introduction to getting started with agents in LangChain. It's a fascinating area to explore, and I'm excited to see what you'll create with it. Happy coding!
+
