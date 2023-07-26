@@ -15,7 +15,7 @@ export const SWITCHES = {
 	youtubeLinks: true,
 	affiliateLinks: false,
 	carbonAds: false,
-	leanpubAds: false,
+	leanpubAds: true,
 };
 
 export const BLOG = {
