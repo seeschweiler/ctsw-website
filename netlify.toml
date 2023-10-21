@@ -1,3 +1,3 @@
 [build]
   publish = "dist"
-  command = "npm run build  --legacy-peer-deps"
+  command = "npm run build  --force"
